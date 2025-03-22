@@ -10,6 +10,10 @@ const StartServer = async () => {
 
     await expressApp(app)
 
+    /**
+     * ! Catch all errors
+     */
+
     app.use((error, req,res, next) => {
         const statusCode = error.statusCode || 500;
         const data = error.data || error.message;
@@ -19,7 +23,6 @@ const StartServer = async () => {
         return res.status(statusCode).json({msg : data})
     })
 
-    //Add Logger to server
   
     app.listen(3000, () => {
         console.log('Server is running on port 3000')

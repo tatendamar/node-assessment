@@ -25,12 +25,9 @@ class DirectoryService {
                 withFileTypes: true
             });
 
-          
             readableStream.push('[');
 
-          
             let firstItem = true;
-          
 
             for(const file of files){
                 const fullPath = path.join(dirPath, file.name);
