@@ -1,6 +1,6 @@
 # Project Name
 
-A brief description of your Node.js project.
+A brief description of my Node.js project.
 
 ## Table of Contents
 
