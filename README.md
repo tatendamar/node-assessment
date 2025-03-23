@@ -1,6 +1,6 @@
 # Project Name
 
-A brief description of my Node.js project.
+This is a node project to read files/folders using Streams with node error handling  and  error reporting
 
 ## Table of Contents
 
