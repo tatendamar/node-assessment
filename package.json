@@ -1,7 +1,7 @@
 {
   "name": "assessment",
-  "version": "1.0.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "This setup provides a Node.js API to list directory contents with detailed information, handles large directories efficiently using streams, and is containerized using Docker. The API can be extended with streaming to further improve performance and scalability. The code is written in a more functional style, avoiding imperative loops and using modern JavaScript features.",
   "main": "index.js",
   "scripts": {
    "start": "nodemon src/index.js",
