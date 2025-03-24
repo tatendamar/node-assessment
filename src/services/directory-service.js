@@ -27,13 +27,11 @@ class DirectoryService {
 
             readableStream.push('[');
 
-            let firstItem = true;
-
-            for(const file of files){
+            const fileDetails = files.map(async (file) => {
                 const fullPath = path.join(dirPath, file.name);
                 const fileInfo = await fs.promises.stat(fullPath);
 
-                const fileDetails = {
+                return {
                     name: file.name,
                     fullPath: fullPath,
                     size: fileInfo.size,
@@ -42,22 +40,27 @@ class DirectoryService {
                     createdAt: fileInfo.birthtime,
                     permissions: fileInfo.mode.toString(8).slice(-3)
                 }
+            });
 
-                if (!firstItem) {
+            const fileInfo = await Promise.all(fileDetails);
+
+            fileInfo.forEach((file, index) => {
+                if(index > 0){
                     readableStream.push(',\n');
-                } else {
-                    firstItem = false;
                 }
-                readableStream.push(JSON.stringify(fileDetails) + '\n')
-            }
+
+                readableStream.push(JSON.stringify(file) + '\n')
+            })
+
+
             readableStream.push('\n]');
-           readableStream.push(null)
+            readableStream.push(null)
 
            return readableStream;
         } catch (error) {
             if (error) {
                  throw new NotFoundError('The specified path does not exist.');
-            } 
+            }
         }
         }
 }
